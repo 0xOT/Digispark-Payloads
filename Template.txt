@@ -1,0 +1,24 @@
+#include "DigiKeyboardUK.h"
+
+void execute_cmd(char command[]) {
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.print(command);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1000);
+}
+
+void open_cmd() {
+  DigiKeyboard.sendKeyStroke(0);
+  DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
+  execute_cmd("cmd");
+}
+
+void setup() {
+  DigiKeyboard.delay(1000);
+}
+
+void loop() {
+  open_cmd();
+  execute_cmd("whoami");
+  for(;;){ /* This stops the loop */ }
+}
